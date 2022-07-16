@@ -25,7 +25,7 @@ const initialState: TRootState = {
 const UPDATE_COMMENT = 'UPDATE_COMMENT';
 const GET_TOKEN = 'GET_TOKEN'
 
-export const updateComment: ActionCreator<AnyAction extends Action> = (text: string) => ({
+export const updateComment: ActionCreator<AnyAction> = (text: string) => ({
   type: UPDATE_COMMENT,
   text
 })

@@ -1,25 +1,26 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRootState, updateComment } from '../../store/store';
-import { CommentForm } from '../CommentForm/CommentForm';
+import { CommentForm, IForm } from '../CommentForm/CommentForm';
+import { useForm } from "react-hook-form";
+
 
 
 export function CommentFormContainer() {
   const value = useSelector<TRootState, string>(state => state.commentText);
   const dispatch = useDispatch();
+  const {register, handleSubmit} = useForm<IForm>()
 
   function handleChange (e: ChangeEvent<HTMLTextAreaElement>) {
     dispatch(updateComment(e.target.value));
   }
-  function submitHandle (e: FormEvent) {
-    e.preventDefault();
-  }
   
   return (
     <CommentForm
-      handleChange={handleChange}
-      submitHandle={submitHandle}
+      changeHandle={handleChange}
+      submitHandle={handleSubmit}
       value={value}
+      register={register}
     />
   );
 }
